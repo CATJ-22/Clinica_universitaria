@@ -18,21 +18,21 @@
     <script type="text/javascript" src="../../lib/js/mdb.min.js"></script>
     <title>Clinica Universitaria</title>
 </head>
-</head>
 
 <body>
     <div class="col-md-3 registro">
         <!-- Default form register -->
-        <form class="text-center border border-light p-5 was-validated" action="#!">
-            <div class="row"> <a class="btn blue-gradient"  href="../../index.php"><i id="eyeopen" class="fas fa-chevron-left prefix"></i>  VOLVER</a></div>
+        <form action="../../Procesos/auth/registro_P.php" class="text-center border border-light p-5" method="post" onsubmit="VerificarClave()">
+            <div class="row"> <a class="btn blue-gradient" href="../../index.php"><i class="fas fa-chevron-left prefix"></i> VOLVER</a></div>
             <p class="h4 mb-4">Registro de usuario</p>
+            <?php if (isset($_GET['msg'])) echo $_GET['msg']; ?>
             <div class="row">
                 <div class="col">
                     <div class="text-left">
                         <label class="h6" for="nombre">Nombre</label>
                     </div>
                     <div class="input-group">
-                        <input id="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
                     </div>
                 </div>
                 <div class="col">
@@ -40,7 +40,7 @@
                         <label class="h6" for="apellido">Apellido</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input id="apellido" type="text" class="form-control" placeholder="Apellido" required>
+                        <input id="apellido" name="apellido" type="text" class="form-control" placeholder="Apellido" required>
                     </div>
                 </div>
             </div>
@@ -50,23 +50,35 @@
                         <label class="h6" for="cedula">Cedula</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input id="cedula" type="text" class="form-control" placeholder="X-XXX-XXXX" required>
+                        <input id="cedula" name="cedula" type="text" class="form-control" placeholder="X-XXX-XXXX" required>
                     </div>
+                </div>
+                <div class="col-sm-4">
                     <div class="text-left">
-                        <label class="h6" for="correo">Correo</label>
+                        <label class="h6" for="edad">Edad</label>
                     </div>
-                    <div class="input-group mb-3 ">
-                        <input id="correo" type="email" class="form-control" placeholder="example@utp.ac.pa" required>
+                    <div class="input-group mb-3">
+                        <input id="edad" name="edad" type="number" min="0" class="form-control" placeholder="0" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="text-left">
-                        <label class="h6" for="contraseña">Contraseña</label>
+                        <label class="h6" for="correo">Correo</label>
+                    </div>
+                    <div class="input-group mb-3 ">
+                        <input id="correo" name="correo" type="email" class="form-control" placeholder="example@utp.ac.pa" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="text-left">
+                        <label class="h6" for="contrasena">Contraseña</label>
                     </div>
                     <div class="input-group">
-                        <input id="contraseña" type="password" class="form-control" placeholder="***********" aria-describedby="pass" required>
+                        <input id="contrasena" name="contrasena" type="password" class="form-control" placeholder="***********" required>
                         <div class="input-group-append">
                             <button class="btn-primary rounded" id="pass" type="button"><i id="eyeopen" class="fas fa-eye prefix"></i><i id="eyeclose" class="fas fa-eye-slash prefix" hidden></i></button>
                         </div>
@@ -74,22 +86,23 @@
                 </div>
                 <div class="col">
                     <div class="text-left">
-                        <label class="h6" for="contraseña2">Repetir Contraseña</label>
+                        <label class="h6" for="contrasena2">Repetir Contraseña</label>
                     </div>
-                    <div class="input-group mb-3">
-                        <input id="contraseña2" type="password" class="form-control" placeholder="***********" aria-describedby="pass2" required>
+                    <input id="contrasena2" type="password" class="form-control" placeholder="***********" required>
+                    <div class="invalid-feedback">
+                        Contraseña incorrecta o esta vacio.
                     </div>
                 </div>
             </div>
 
             <!-- Sign up button -->
-            <button class="btn blue-gradient my-4 btn-block" type="submit">Sign in</button>
+            <button id="btnreg" class="btn blue-gradient my-4 btn-block" type="submit">Registrarme</button>
 
 
             <!-- Terms of service -->
-            <p>By clicking
-                <em>Sign up</em> you agree to our
-                <a href="" target="_blank">terms of service</a>
+            <p>Al dar Click en
+                <em>Registrarme</em> tu acceptas nuestros
+                <a href="" target="_blank">terminos de servicio</a>
 
         </form>
     </div>
@@ -98,17 +111,35 @@
 
 </html>
 <script>
-    $(document).ready(function() {});
-    $("#pass").click(function() {
-        var tipo = document.getElementById("contraseña");
-        if (tipo.type == "password") {
-            $("#contraseña").attr("type", "text");
-            $("#eyeclose").removeAttr("hidden");
-            $("#eyeopen").hide();
-        } else {
-            $("#contraseña").attr("type", "password");
-            $("#eyeopen").show();
-            $("#eyeclose").attr("hidden", "");
-        }
+    $(document).ready(function() {
+        setTimeout(function() {
+            $(".alert").fadeOut(1500);
+        }, 3000);
+
+
+        $("#contrasena2").change(function() {
+            pass1 = $("#contrasena").val();
+            pass2 = $("#contrasena2").val();
+            if (pass1 != pass2) {
+                $("#btnreg").attr("disabled", "");
+                $("#contrasena2").addClass("is-invalid");
+            } else {
+                $("#btnreg").removeAttr("disable");
+                $("#contrasena2").removeClass("is-valid");
+            }
+        });
+
+        $("#pass").click(function() {
+            var tipo = document.getElementById("contrasena");
+            if (tipo.type == "password") {
+                $("#contrasena").attr("type", "text");
+                $("#eyeclose").removeAttr("hidden");
+                $("#eyeopen").hide();
+            } else {
+                $("#contrasena").attr("type", "password");
+                $("#eyeopen").show();
+                $("#eyeclose").attr("hidden", "");
+            }
+        });
     });
 </script>
