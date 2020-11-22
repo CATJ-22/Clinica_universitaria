@@ -23,7 +23,7 @@
     <div class="col-md-3 registro">
         <!-- Default form register -->
         <form action="../../Procesos/auth/registro_P.php" class="text-center border border-light p-5" method="post" onsubmit="VerificarClave()">
-            <div class="row"> <a class="btn blue-gradient" href="../../index.php"><i class="fas fa-chevron-left prefix"></i> VOLVER</a></div>
+            <div class="row"> <a class="btn " href="../../index.php"><i class="fas fa-chevron-left prefix"></i> VOLVER</a></div>
             <p class="h4 mb-4">Registro de usuario</p>
             <?php if (isset($_GET['msg'])) echo $_GET['msg']; ?>
             <div class="row">
@@ -80,7 +80,7 @@
                     <div class="input-group">
                         <input id="contrasena" name="contrasena" type="password" class="form-control" placeholder="***********" required>
                         <div class="input-group-append">
-                            <button class="btn-primary rounded" id="pass" type="button"><i id="eyeopen" class="fas fa-eye prefix"></i><i id="eyeclose" class="fas fa-eye-slash prefix" hidden></i></button>
+                            <button class="btn-primary rounded showpass" id="pass" type="button"><i id="eyeopen" class="fas fa-eye prefix"></i><i id="eyeclose" class="fas fa-eye-slash prefix" hidden></i></button>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
             </div>
 
             <!-- Sign up button -->
-            <button id="btnreg" class="btn blue-gradient my-4 btn-block" type="submit">Registrarme</button>
+            <button id="btnreg" class="btn my-4 btn-block" type="submit">Registrarme</button>
 
 
             <!-- Terms of service -->
@@ -135,10 +135,12 @@
                 $("#contrasena").attr("type", "text");
                 $("#eyeclose").removeAttr("hidden");
                 $("#eyeopen").hide();
+                $("#pass").removeClass("showpass").addClass("hidepass");
             } else {
                 $("#contrasena").attr("type", "password");
                 $("#eyeopen").show();
                 $("#eyeclose").attr("hidden", "");
+                $("#pass").removeClass("hidepass").addClass("showpass");
             }
         });
     });

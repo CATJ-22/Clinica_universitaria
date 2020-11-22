@@ -24,12 +24,25 @@ if ($_SESSION) {
     <script type="text/javascript" src="lib/js/mdb.min.js"></script>
     <title>Clinica Universitaria</title>
 </head>
+<header>
+    <div class="col text-center mleft">
+        <div class="row border rounded border-light title">
+            <div class="col-sm-1 mt-3 mb-3">
+                <img src="Style/Image/utp.png" alt="" width="100px">
+            </div>
+            <div class="col mb-3 mt-3">
+                <h1>Universidad Tecnologica de Panamá</h1>
+                <h3>Clinica Universitaria</h3>
+            </div>
+        </div>
+    </div>
+</header>
 
 <body class="w-100">
     <div class="container-xl">
         <div class="col-md-8 login">
 
-            <form class="text-center border border-light p-5" action="Procesos/auth/login_P.php" method="POST">
+            <form class="text-center border rounded border-light p-5 bg-white" action="Procesos/auth/login_P.php" method="POST">
                 <p class="h4 mb-4">Inicio de sesion</p>
                 <?php if (isset($_GET['msg'])) echo $_GET['msg']; ?>
                 <!-- Email -->
@@ -59,7 +72,7 @@ if ($_SESSION) {
 
 
                 <!-- Sign in button -->
-                <button class="btn blue-gradient btn-block my-4" type="submit">Iniciar Sesión</button>
+                <button class="btn btn-block my-4" type="submit">Iniciar Sesión</button>
 
                 <!-- Register -->
                 <p>No tienes cuenta?
@@ -81,9 +94,9 @@ if ($_SESSION) {
         $(".alert").fadeOut(1500);
     }, 3000);
 
-    $("#contrasena").change(function(){
-        var a=document.getElementById('recordme').value;
-    console.log(a);
+    $("#contrasena").change(function() {
+        var a = document.getElementById('recordme').value;
+        console.log(a);
     });
 
     $("#basic-addon2").click(function() {

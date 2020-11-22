@@ -2,15 +2,25 @@
 .login{
     position: relative;
     display: flex;
-    margin-top: 25%;
+    margin-top: 20%;
     margin-left: 30%;
+    z-index: 2;
 }
 
 .showpass{
-    background-color: rgb(0, 102, 255) !important;
+    background-color: #b000b6 !important;
 }
 .hidepass{
-    background-color: rgb(0, 38, 95) !important;
+    background-color: #68006b !important;
+}
+
+.title{
+    color: rgb(69, 27, 105);
+    font-family: 'Times New Roman', Times, serif;
+    max-width: 45%;
+}
+.mleft{
+    margin-left: 30%;
 }
 
 /*REGISTRO STYLE*/
@@ -20,4 +30,18 @@
     max-width: 100%;
     padding-top: 10%;
     padding-left: 35%;
+}
+
+
+/*GENERALS*/
+.navbar-dark{
+    background-color: #68006b !important;
+}
+.btn{
+    background-color: #b000b6 !important;
+    color: white;
+}
+:hover.btn{
+    background-color: #68006b !important;
+    color: white;
 }

@@ -14,6 +14,7 @@ if ($_SESSION['rol'] == "usuario") {
         <link rel="stylesheet" href="../../../lib/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../../lib/css/mdb.min.css">
         <link rel="stylesheet" href="../../../lib/css/style.css">
+        <link rel="stylesheet" href="../../../Style/css/index.css">
         <!--Scripts -->
         <script type="text/javascript" src="../../../lib/js/jquery.min.js"></script>
         <script type="text/javascript" src="../../../lib/js/popper.min.js"></script>
@@ -24,7 +25,7 @@ if ($_SESSION['rol'] == "usuario") {
     <header>
         <!--Navbar -->
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
-            <a class="navbar-brand" href="#">Clinica universitaria</a>
+            <a class="navbar-brand" href="#"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px">  Clinica universitaria</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,14 +42,8 @@ if ($_SESSION['rol'] == "usuario") {
                     <li class="nav-item">
                         <a class="nav-link" href="#">Historial de citas solicitadas</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ayuda
-                        </a>
-                        <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-                            <a class="dropdown-item" href="#">Servicios que Ofrecemos</a>
-                            <a class="dropdown-item" href="#">informacion de atención</a>
-                            <a class="dropdown-item" href="#">Perfil de los Doctores y Enfermeras</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://utp.ac.pa/clinica-universitaria">Información sobre la clinica</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
