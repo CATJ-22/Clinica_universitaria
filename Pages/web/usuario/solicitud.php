@@ -31,13 +31,13 @@ if ($_SESSION['rol'] == "usuario") {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/clinica_universitaria/Pages/web/usuario/bienvenida.php">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/clinica_universitaria/Pages/web/usuario/solicitud.php">Solicitud de citas</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Solicitud de citas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Historial de citas solicitadas</a>
