@@ -25,7 +25,7 @@ if ($_SESSION['rol'] == "usuario") {
     <header>
         <!--Navbar -->
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
-            <a class="navbar-brand" href="#"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px">  Clinica universitaria</a>
+            <a class="navbar-brand" href="bienvenida.php"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px">  Clinica universitaria</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -37,7 +37,7 @@ if ($_SESSION['rol'] == "usuario") {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/clinica_universitaria/Pages/web/usuario/solicitud.php">Solicitud de citas</a>
+                        <a class="nav-link" href="solicitud.php">Solicitud de citas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Historial de citas solicitadas</a>
@@ -52,7 +52,7 @@ if ($_SESSION['rol'] == "usuario") {
                             <?php echo $_SESSION['nombre'] ?>[<?php echo $_SESSION['rol'] ?>] <img src="../../../Style/Image/usuario.svg" class="rounded-circle z-depth-0" alt="avatar image" style="width: 35px;">
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
-                            <a class="dropdown-item" href="#">Editar Pefil</a>
+                            <a class="dropdown-item" href="../../auth/actualizar.php">Editar Pefil</a>
                             <a class="dropdown-item" href="../../../index.php">Cerrar sesion</a>
                         </div>
                     </li>
