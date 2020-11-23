@@ -40,10 +40,10 @@ if ($_SESSION) {
 
 <body>
     <div class="col d-flex justify-content-center">
-        <div class="col-md-3 login">
+        <div id="div-content" class="col login " style="max-width: 30rem;">
 
             <form class="text-center border rounded border-light p-5 bg-white" action="Procesos/auth/login_P.php" method="POST">
-                <p class="h4 mb-4">Inicio de sesion</p>
+                <p class="h2 mb-4 title">Inicio de sesion</p>
                 <!-- Email -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -112,6 +112,20 @@ if ($_SESSION) {
         $("#contrasena").change(function() {
             var a = document.getElementById('recordme').value;
             console.log(a);
+        });
+
+        if (screen.width < 768) {
+            $("#div-content").removeClass("login").addClass("mt-5");
+        } else {
+            $("#div-content").addClass("login").removeClass("mt-5");
+        }
+
+        $(window).resize(function() {
+            if (screen.width < 768) {
+                $("#div-content").removeClass("login").addClass("mt-5");
+            } else {
+                $("#div-content").addClass("login").removeClass("mt-5");
+            }
         });
 
         $("#basic-addon2").click(function() {
