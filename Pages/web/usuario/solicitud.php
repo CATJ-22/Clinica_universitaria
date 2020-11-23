@@ -25,7 +25,7 @@ if ($_SESSION['rol'] == "usuario") {
     <header>
         <!--Navbar -->
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
-            <a class="navbar-brand mr-5 title" href="bienvenida.php"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px">  Clinica universitaria</a>
+            <a class="navbar-brand mr-5 title" href="bienvenida.php"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px"> Clinica universitaria</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -67,44 +67,59 @@ if ($_SESSION['rol'] == "usuario") {
             <h1 class="text-center title">SOLICITUD DE CITAS</h1>
             <br>
             <form action="../../../Procesos/usuario/guardarSolcitud_P.php" method="POST">
-            <div class="row justify-content-center">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="cita">Tipo de Cita:</label>
-                        <input type="text" class="form-control mr-2" id="cita" name="cita" value="Consulta General" readonly>
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="cita">Tipo de Cita:</label>
+                            <input type="text" class="form-control mr-2" id="cita" name="cita" value="Consulta General" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="dia">Día de Cita:</label>
+                            <input id="dia" type="date" class="form-control" name="dia" aria-describedby="validation" placeholder="mm/dd/aaaa" required>
+                            <div id="validation" class="invalid-feedback">
+                                Solo Abierto de Lunes a Viernes.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="hora">Hora de Cita:</label>
+                            <input id="hora" type="time" class="form-control" name="hora" min="08:30" max="15:30" required>
+                            
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="dia">Día de Cita:</label>
-                        <input id="dia" type="date" class="form-control" name="dia" min="Mo" max="Fr" required>
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="observe">Detalle de Consulta:</label>
+                            <textarea id="observe" class="form-control" name="observe" rows="5" cols="50" required></textarea>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for="hora">Hora de Cita:</label>
-                        <input id="hora" type="time" class="form-control" name="hora" min="08:30" max="15:30" required>
-                    </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-default btn-md rounded">Enviar</button>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="observe">Detalle de Consulta:</label>
-                        <textarea id="observe" class="form-control" name="observe" rows="5" cols="50" required></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center" >
-                <button type="submit" class="btn btn-default btn-md rounded">Enviar</button>
-            </div>
             </form>
         </div>
     </body>
 
     </html>
     <script>
-    $(document).ready(function() {
+        $(document).ready(function() {
+
+            $("#dia").change(function() {
+                var day = new Date($("#dia").val()).getUTCDay();
+                if ([6, 0].includes(day)) {
+                    document.getElementById("dia").value = '';
+                    $("#dia").addClass("is-invalid").removeClass("is-valid");
+                }else{
+                    $("#dia").addClass("is-valid").removeClass("is-invalid");
+                }
+            });
+
             var date = new Date();
             var time = date.toISOString();
             var time_split = time.split("T");
