@@ -25,12 +25,12 @@ if ($_SESSION) {
     <title>Clinica Universitaria</title>
 </head>
 <header>
-    <div class="col text-center mleft">
+    <div class="col text-center d-flex justify-content-center">
         <div class="row border rounded border-light title">
-            <div class="col-sm-1 mt-3 mb-3">
+            <div class="col-sm-1 mt-3 mr-3 mb-3">
                 <img src="Style/Image/utp.png" alt="" width="100px">
             </div>
-            <div class="col mb-3 mt-3">
+            <div class="col mt-3 mr-3 mb-3">
                 <h1>Universidad Tecnologica de Panamá</h1>
                 <h3>Clinica Universitaria</h3>
             </div>
@@ -38,19 +38,18 @@ if ($_SESSION) {
     </div>
 </header>
 
-<body class="w-100">
-    <div class="container-xl">
-        <div class="col-md-8 login">
+<body>
+    <div class="col d-flex justify-content-center">
+        <div class="col-md-3 login">
 
             <form class="text-center border rounded border-light p-5 bg-white" action="Procesos/auth/login_P.php" method="POST">
                 <p class="h4 mb-4">Inicio de sesion</p>
-                <?php if (isset($_GET['msg'])) echo $_GET['msg']; ?>
                 <!-- Email -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon3"><i class="fas fa-envelope prefix"></i></span>
                     </div>
-                    <input type="email" class="form-control" id="correo" name="correo" placeholder="example@utp.ac.pa" style="width: 22rem !important;">
+                    <input type="email" class="form-control" id="correo" name="correo" placeholder="example@utp.ac.pa">
                 </div>
 
                 <!-- Password -->
@@ -86,31 +85,48 @@ if ($_SESSION) {
         </div>
     </div>
 </body>
+<?php if (isset($_GET['msg'])) { ?>
+    <footer class="col d-flex justify-content-end fixed-bottom">
+        <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" style="margin-bottom: 1%;">
+            <div class="toast-header bg-info text-white">
+                <div class="col d-flex justify-content-start">
+                    <img class=" rounded mr-2 " width="20" height="20" src="Style/Image/informacion.svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                    <strong class="mr- ">AVISO!!!</strong>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="toast-body"><?php echo $_GET['msg']; ?></div>
+        </div>
+    </footer>
+<?php } ?>
 
 </html>
 <script>
-    $(document).ready(function() {});
-    setTimeout(function() {
-        $(".alert").fadeOut(1500);
-    }, 3000);
+    $(document).ready(function() {
+        $('.toast').toast('show');
 
-    $("#contrasena").change(function() {
-        var a = document.getElementById('recordme').value;
-        console.log(a);
-    });
+        $("#contrasena").change(function() {
+            var a = document.getElementById('recordme').value;
+            console.log(a);
+        });
 
-    $("#basic-addon2").click(function() {
-        var tipo = document.getElementById("contrasena");
-        if (tipo.type == "password") {
-            $("#contrasena").attr("type", "text");
-            $("#eyeclose").removeAttr("hidden");
-            $("#eyeopen").hide();
-            $("#basic-addon2").removeClass("showpass").addClass("hidepass");
-        } else {
-            $("#contrasena").attr("type", "password");
-            $("#eyeopen").show();
-            $("#eyeclose").attr("hidden", "");
-            $("#basic-addon2").removeClass("hidepass").addClass("showpass");
-        }
+        $("#basic-addon2").click(function() {
+            var tipo = document.getElementById("contrasena");
+            if (tipo.type == "password") {
+                $("#contrasena").attr("type", "text");
+                $("#eyeclose").removeAttr("hidden");
+                $("#eyeopen").hide();
+                $("#basic-addon2").removeClass("showpass").addClass("hidepass");
+            } else {
+                $("#contrasena").attr("type", "password");
+                $("#eyeopen").show();
+                $("#eyeclose").attr("hidden", "");
+                $("#basic-addon2").removeClass("hidepass").addClass("showpass");
+            }
+        });
     });
 </script>

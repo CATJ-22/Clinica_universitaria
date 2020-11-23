@@ -2,29 +2,28 @@
 include('../database/conexion_DB.php');
 
 if (isset ($_REQUEST['nombre'])&& isset($_REQUEST['apellido'])&& isset($_REQUEST['cedula'])&& isset($_REQUEST['correo'])&& isset($_REQUEST['edad'])&& isset($_REQUEST['contrasena'])){
+    $id = $_REQUEST['id'];
     $nombre=$_REQUEST['nombre'];
     $apellido=$_REQUEST['apellido'];
     $cedula=$_REQUEST['cedula'];
     $edad=$_REQUEST['edad'];
     $correo=$_REQUEST['correo'];
-    $pass=md5($_REQUEST['contrasena']);
-    $rol="usuario";
-
-    //Verificar Correo
-    $sql="SELECT Correo from usuarios where Correo='$correo'";
-    $result=mysqli_query($conn,$sql);
-
-    if(mysqli_num_rows($result) > 0){
-        header('Location: ../../Pages/auth/registro.php?msg=<div class="alert alert-danger" role="alert">Este correo ya existe en nuestros registros</div>');
-
-    }else{
-        //Insertar Datos en BD
-        $sql = "INSERT INTO usuarios (Nombre, Apellido, Cedula, Edad, Correo, Pass, Rol) VALUES ('$nombre', '$apellido', '$cedula', '$edad', '$correo', '$pass', '$rol')";
-        if(mysqli_query($conn,$sql)){
-            header('Location: ../../index.php?msg=<div class="alert alert-success" role="alert">Se ha registrado exitosamente sus datos</div>');
-        }
+    if ($_REQUEST['oldpw'] =! $_REQUEST['contrasena']) {
+        $pass=md5($_REQUEST['contrasena']);
     }
 
+    //se valida la contraseña  y dependiendo del resultado se actualiza con contraseña o sin contraseña
+    if($_REQUEST['oldpw'] =! $_REQUEST['contrasena']){
+        $sql = "UPDATE usuarios SET Nombre='$nombre', Apellido='$apellido', Cedula='$cedula', Edad='$edad', Correo='$correo', Pass='$Pass' where Id='$id'";
+        if(mysqli_query($conn,$sql)){
+            header('Location: ../../Pages/web/usuario/bienvenida.php?msg=Se actualizaron correctamente sus datos');
+        }
+    }else{
+        $sql = "UPDATE usuarios SET Nombre='$nombre', Apellido='$apellido', Cedula='$cedula', Edad='$edad', Correo='$correo' where Id='$id'";
+        if(mysqli_query($conn,$sql)){
+            header('Location: ../../Pages/web/usuario/bienvenida.php?msg=Se actualizaron correctamente sus datos');
+        }
+    }
 }else
     echo "No se ha podido guardar sus datos correctamente.";
 

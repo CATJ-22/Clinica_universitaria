@@ -15,13 +15,13 @@ if (isset ($_REQUEST['nombre'])&& isset($_REQUEST['apellido'])&& isset($_REQUEST
     $result=mysqli_query($conn,$sql);
 
     if(mysqli_num_rows($result) > 0){
-        header('Location: ../../Pages/auth/registro.php?msg=<div class="alert alert-danger" role="alert">Este correo ya existe en nuestros registros</div>');
+        header('Location: ../../Pages/auth/registro.php?msg=Este correo ya existe en nuestros registros');
 
     }else{
         //Insertar Datos en BD
         $sql = "INSERT INTO usuarios (Nombre, Apellido, Cedula, Edad, Correo, Pass, Rol) VALUES ('$nombre', '$apellido', '$cedula', '$edad', '$correo', '$pass', '$rol')";
         if(mysqli_query($conn,$sql)){
-            header('Location: ../../index.php?msg=<div class="alert alert-success" role="alert">Se ha registrado exitosamente sus datos</div>');
+            header('Location: ../../index.php?msg=Se ha registrado exitosamente sus datos');
         }
     }
 

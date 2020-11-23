@@ -1,10 +1,6 @@
 /*INDEX STYLE : LOGIN*/
 .login{
-    position: relative;
-    display: flex;
-    margin-top: 20%;
-    margin-left: 30%;
-    z-index: 2;
+    margin-top: 10rem !important;
 }
 
 .showpass{
@@ -17,19 +13,12 @@
 .title{
     color: rgb(69, 27, 105);
     font-family: 'Times New Roman', Times, serif;
-    max-width: 45%;
-}
-.mleft{
-    margin-left: 30%;
 }
 
+
 /*REGISTRO STYLE*/
-.registro{
-    position: relative;
-    display: flex;
-    max-width: 100%;
-    padding-top: 10%;
-    padding-left: 35%;
+.regist{
+    margin-top: 5rem !important;
 }
 
 

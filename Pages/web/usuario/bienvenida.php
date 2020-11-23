@@ -25,7 +25,7 @@ if ($_SESSION['rol'] == "usuario") {
     <header>
         <!--Navbar -->
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
-            <a class="navbar-brand" href="bienvenida.php"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px">  Clinica universitaria</a>
+            <a class="navbar-brand" href="bienvenida.php"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px"> Clinica universitaria</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -66,7 +66,31 @@ if ($_SESSION['rol'] == "usuario") {
 
     </body>
 
+    <?php if (isset($_GET['msg'])) { ?>
+        <footer class="col d-flex justify-content-end fixed-bottom">
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" style="margin-bottom: 1%;">
+                <div class="toast-header bg-info text-white">
+                    <div class="col d-flex justify-content-start">
+                    <img class=" rounded mr-2 " width="20" height="20" src="../../../Style/Image/informacion.svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                    <strong class="mr- ">AVISO!!!</strong>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                </div>
+                <div class="toast-body"><?php echo $_GET['msg']; ?></div>
+            </div>
+        </footer>
+    <?php } ?>
+
     </html>
+    <script>
+        $(document).ready(function() {
+            $('.toast').toast('show')
+        });
+    </script>
 <?php
 }
 ?>
