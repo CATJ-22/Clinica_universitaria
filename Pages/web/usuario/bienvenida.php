@@ -14,7 +14,7 @@ if ($_SESSION['rol'] == "usuario") {
         <link rel="stylesheet" href="../../../lib/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../../lib/css/mdb.min.css">
         <link rel="stylesheet" href="../../../lib/css/style.css">
-        <link rel="stylesheet" href="../../../Style/css/ekko-lightbox.css">
+        <link rel="stylesheet" href="../../../lib/css/ekko-lightbox.css">
         <link rel="stylesheet" href="../../../Style/css/index.css">
         <!--Scripts -->
         <script type="text/javascript" src="../../../lib/js/jquery.min.js"></script>
@@ -27,25 +27,24 @@ if ($_SESSION['rol'] == "usuario") {
     <header>
         <!--Navbar -->
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
-            <a class="navbar-brand title" href="bienvenida.php"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px"> Clinica universitaria</a>
+            <a class="navbar-brand title mr-5" href="bienvenida.php"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px"> Clinica universitaria</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
-                            <span class="sr-only">(current)</span>
+                        <a class="nav-link" href="bienvenida.php"><i class="fas fa-home"></i> Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="solicitud.php">Solicitud de citas</a>
+                        <a class="nav-link" href="solicitud.php"><i class="fas fa-clipboard-list"></i> Solicitud de citas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="historial.php">Historial de citas solicitadas</a>
+                        <a class="nav-link" href="historial.php"><i class="fas fa-history"></i> Historial de citas solicitadas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://utp.ac.pa/clinica-universitaria">Información sobre la clinica</a>
+                        <a class="nav-link" target="_blank" href="https://utp.ac.pa/clinica-universitaria"><i class="fas fa-info"></i> Información sobre la clinica</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -54,8 +53,8 @@ if ($_SESSION['rol'] == "usuario") {
                             <?php echo $_SESSION['nombre'] ?>[<?php echo $_SESSION['rol'] ?>] <img src="../../../Style/Image/usuario.svg" class="rounded-circle z-depth-0" alt="avatar image" style="width: 35px;">
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
-                            <a class="dropdown-item" href="../../auth/actualizar.php">Editar Pefil</a>
-                            <a class="dropdown-item" href="../../../index.php">Cerrar sesion</a>
+                            <a class="dropdown-item" href="../../auth/actualizar.php"><i class="fas fa-user-edit"></i> Editar Pefil</a>
+                            <a class="dropdown-item" href="../../../index.php"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a>
                         </div>
                     </li>
                 </ul>
@@ -65,12 +64,12 @@ if ($_SESSION['rol'] == "usuario") {
     </header>
 
     <body>
-        <div class="col" style="margin-top: 3%;">
-            <div class="row">
-                <div class="col d-flex justify-content-end">
+        <div class="container" style="margin-top: 3%;">
+            <div id="div-content" class="row row-cols-2">
+                <div class="col mb-5 d-flex justify-content-center">
                     <div class="card" style="width: 30rem;">
                         <div class="card-header title">
-                        <h3>Clínica Universitaria</h3>
+                            <h3>Clínica Universitaria</h3>
                         </div>
                         <div class="card-body text-justify">
                             <p class="card-text">La Clínica Universitaria brinda servicios de salud y lleva a cabo actividades clínicas y de capacitación en temas de salud, dirigidas a la comunidad universitaria estudiantil, docente, administrativa y de investigación de la Universidad.</p>
@@ -78,10 +77,10 @@ if ($_SESSION['rol'] == "usuario") {
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col mb-5 d-flex justify-content-center">
                     <div class="card" style="width: 30rem;">
                         <div class="card-header title">
-                        <h3>Objetivo</h3>
+                            <h3>Objetivo</h3>
                         </div>
                         <div class="card-body text-justify">
                             <li>Proporcionar al paciente servicios de atención integral para su salud, en lo concerniente a prevención, tratamiento y rehabilitación de enfermedades.</li>
@@ -91,9 +90,7 @@ if ($_SESSION['rol'] == "usuario") {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col d-flex justify-content-end">
+                <div class="col mb-5 d-flex justify-content-center">
                     <div class="card" style="width: 30rem;">
                         <div class="card-header title">
                             <h3>Funciones</h3>
@@ -110,11 +107,11 @@ if ($_SESSION['rol'] == "usuario") {
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col mb-5 d-flex justify-content-center">
                     <div class="card" style="width: 30rem;">
                         <a href="../../../Style/Image/ubicacion.png" data-toggle="lightbox" data-title="Ubicacion de la Clinica"><img src="../../../Style/Image/ubicacion.png" class="card-img-top img-fluid" alt="..."></a>
                         <div class="card-body">
-                            <p class="card-text"><b>Dirección:</b>  Universidad Tecnológica de Panamá, Avenida Ricardo J. Alfaro, Campus Metropolitano Dr. Víctor Levi Sasso, Edificio Administrativo.</p>
+                            <p class="card-text"><b>Dirección:</b> Universidad Tecnológica de Panamá, Avenida Ricardo J. Alfaro, Campus Metropolitano Dr. Víctor Levi Sasso, Edificio Administrativo.</p>
                             <a target="_blank" href="https://www.google.com/maps/place/9%C2%B001'13.8%22N+79%C2%B031'59.4%22W/@9.0228371,-79.5349309,16z/data=!4m5!3m4!1s0x0:0x0!8m2!3d9.020505!4d-79.5331778" class="btn btn-primary">Ubicación</a>
                         </div>
                     </div>
@@ -146,10 +143,22 @@ if ($_SESSION['rol'] == "usuario") {
     <script>
         $(document).ready(function() {
             $('.toast').toast('show')
+            if (screen.width < 768){
+                $("#div-content").removeClass("row-cols-2").addClass("row-cols-1");
+            }
         });
+
+        $(window).resize(function() {
+            if (screen.width < 768){
+                $("#div-content").removeClass("row-cols-2").addClass("row-cols-1");
+            }else{
+                $("#div-content").removeClass("row-cols-1").addClass("row-cols-2");
+            }
+        });
+
         $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-                event.preventDefault();
-                $(this).ekkoLightbox();
+            event.preventDefault();
+            $(this).ekkoLightbox();
         });
     </script>
 <?php

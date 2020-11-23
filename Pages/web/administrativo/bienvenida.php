@@ -32,7 +32,7 @@ if ($_SESSION['rol'] == "administrativo") {
             <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Administracion de citas solicitadas</a>
@@ -47,8 +47,8 @@ if ($_SESSION['rol'] == "administrativo") {
                             <?php echo $_SESSION['nombre'] ?>[<?php echo $_SESSION['rol'] ?>] <img src="../../../Style/Image/adminstrativo.svg" class="rounded-circle z-depth-0" alt="avatar image" style="width: 35px;">
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
-                            <a class="dropdown-item" href="../../auth/actualizar.php">Editar Pefil</a>
-                            <a class="dropdown-item" href="../../../index.php">Cerrar sesion</a>
+                            <a class="dropdown-item" href="../../auth/actualizar.php"><i class="fas fa-user-edit"></i> Editar Pefil</a>
+                            <a class="dropdown-item" href="../../../index.php"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a>
                         </div>
                     </li>
                 </ul>

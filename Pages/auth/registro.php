@@ -34,7 +34,7 @@
 
 <body>
     <div class="col d-flex justify-content-center">
-        <div class="col-md-5 regist">
+        <div id="div-content" class="col regist" style="max-width: 50rem;">
             <!-- Default form register -->
             <form action="../../Procesos/auth/registro_P.php" class="text-center border border-light p-5" method="post" onsubmit="VerificarClave()">
                 <div class="row"> <a class="btn " href="../../index.php"><i class="fas fa-chevron-left prefix"></i> VOLVER</a></div>
@@ -156,6 +156,20 @@
             } else {
                 $("#btnreg").removeAttr("disabled");
                 $("#contrasena2").removeClass("is-invalid").addClass("is-valid");
+            }
+        });
+
+        if (screen.width < 768) {
+            $("#div-content").removeClass("regist").addClass("mt-5");
+        } else {
+            $("#div-content").addClass("regist").removeClass("mt-5");
+        }
+
+        $(window).resize(function() {
+            if (screen.width < 768) {
+                $("#div-content").removeClass("regist").addClass("mt-5");
+            } else {
+                $("#div-content").addClass("regist").removeClass("mt-5");
             }
         });
 
