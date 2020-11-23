@@ -14,12 +14,14 @@ if ($_SESSION['rol'] == "usuario") {
         <link rel="stylesheet" href="../../../lib/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../../lib/css/mdb.min.css">
         <link rel="stylesheet" href="../../../lib/css/style.css">
+        <link rel="stylesheet" href="../../../Style/css/ekko-lightbox.css">
         <link rel="stylesheet" href="../../../Style/css/index.css">
         <!--Scripts -->
         <script type="text/javascript" src="../../../lib/js/jquery.min.js"></script>
         <script type="text/javascript" src="../../../lib/js/popper.min.js"></script>
         <script type="text/javascript" src="../../../lib/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../../../lib/js/mdb.min.js"></script>
+        <script type="text/javascript" src="../../../lib/js/ekko-lightbox.min.js"></script>
         <title>Clinica Universitaria</title>
     </head>
     <header>
@@ -40,10 +42,10 @@ if ($_SESSION['rol'] == "usuario") {
                         <a class="nav-link" href="solicitud.php">Solicitud de citas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Historial de citas solicitadas</a>
+                        <a class="nav-link" href="historial.php">Historial de citas solicitadas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://utp.ac.pa/clinica-universitaria">Información sobre la clinica</a>
+                        <a class="nav-link" target="_blank" href="https://utp.ac.pa/clinica-universitaria">Información sobre la clinica</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -63,7 +65,62 @@ if ($_SESSION['rol'] == "usuario") {
     </header>
 
     <body>
-
+        <div class="col" style="margin-top: 3%;">
+            <div class="row">
+                <div class="col d-flex justify-content-end">
+                    <div class="card" style="width: 30rem;">
+                        <div class="card-header title">
+                        <h3>Clínica Universitaria</h3>
+                        </div>
+                        <div class="card-body text-justify">
+                            <p class="card-text">La Clínica Universitaria brinda servicios de salud y lleva a cabo actividades clínicas y de capacitación en temas de salud, dirigidas a la comunidad universitaria estudiantil, docente, administrativa y de investigación de la Universidad.</p>
+                            <a target="_blank" href="https://utp.ac.pa/clinica-universitaria" class="btn btn-primary">Mas Información</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 30rem;">
+                        <div class="card-header title">
+                        <h3>Objetivo</h3>
+                        </div>
+                        <div class="card-body text-justify">
+                            <li>Proporcionar al paciente servicios de atención integral para su salud, en lo concerniente a prevención, tratamiento y rehabilitación de enfermedades.</li>
+                            <br>
+                            <li>Desarrollar actividades inherentes a la promoción de la salud de la comunidad universitaria.</li>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col d-flex justify-content-end">
+                    <div class="card" style="width: 30rem;">
+                        <div class="card-header title">
+                            <h3>Funciones</h3>
+                        </div>
+                        <div class="card-body text-justify">
+                            <br>
+                            <li>Asistir con atención médica a los estudiantes, docentes, investigadores y personal administrativo de la Universidad.</li>
+                            <br>
+                            <li>Orientar a pacientes acerca de su enfermedad, tratamiento, medicamento y efectos secundarios.</li>
+                            <br>
+                            <li>Dar atención primaria (preventiva) en salud e higiene a través de acciones de capacitación sobre diferentes patologías infectocontagiosas u otras enfermedades.</li>
+                            <br>
+                            <li>Realizar un plan anual de trabajo para desarrollar mejores niveles de atención en la clínica.</li>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 30rem;">
+                        <a href="../../../Style/Image/ubicacion.png" data-toggle="lightbox" data-title="Ubicacion de la Clinica"><img src="../../../Style/Image/ubicacion.png" class="card-img-top img-fluid" alt="..."></a>
+                        <div class="card-body">
+                            <p class="card-text"><b>Dirección:</b>  Universidad Tecnológica de Panamá, Avenida Ricardo J. Alfaro, Campus Metropolitano Dr. Víctor Levi Sasso, Edificio Administrativo.</p>
+                            <a target="_blank" href="https://www.google.com/maps/place/9%C2%B001'13.8%22N+79%C2%B031'59.4%22W/@9.0228371,-79.5349309,16z/data=!4m5!3m4!1s0x0:0x0!8m2!3d9.020505!4d-79.5331778" class="btn btn-primary">Ubicación</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 
     <?php if (isset($_GET['msg'])) { ?>
@@ -71,13 +128,13 @@ if ($_SESSION['rol'] == "usuario") {
             <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" style="margin-bottom: 1%;">
                 <div class="toast-header bg-info text-white">
                     <div class="col d-flex justify-content-start">
-                    <img class=" rounded mr-2 " width="20" height="20" src="../../../Style/Image/informacion.svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                    <strong class="mr- ">AVISO!!!</strong>
+                        <img class=" rounded mr-2 " width="20" height="20" src="../../../Style/Image/informacion.svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                        <strong class="mr- ">AVISO!!!</strong>
                     </div>
                     <div class="col d-flex justify-content-end">
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                 </div>
                 <div class="toast-body"><?php echo $_GET['msg']; ?></div>
@@ -89,6 +146,10 @@ if ($_SESSION['rol'] == "usuario") {
     <script>
         $(document).ready(function() {
             $('.toast').toast('show')
+        });
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
         });
     </script>
 <?php
