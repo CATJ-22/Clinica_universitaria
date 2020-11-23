@@ -63,10 +63,56 @@ if ($_SESSION['rol'] == "usuario") {
     </header>
 
     <body>
-
+        <div class="container" style="margin-top: 50px;">
+            <?php if (isset($_GET['msg'])) echo $_GET['msg']; ?>
+            <h1 class="text-center">SOLICITUD DE CITAS</h1>
+            <br>
+            <form action="../../../Procesos/usuario/guardarSolcitud_P.php" method="POST">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="cita">Tipo de Cita:</label>
+                        <input type="text" class="form-control mr-2" id="cita" name="cita" value="Consulta General" readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="dia">Día de Cita:</label>
+                        <input id="dia" type="date" class="form-control" name="dia" min="Mo" max="Fr" required>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="hora">Hora de Cita:</label>
+                        <input id="hora" type="time" class="form-control" name="hora" min="08:30" max="15:30" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="observe">Detalle de Consulta:</label>
+                        <textarea id="observe" class="form-control" name="observe" rows="5" cols="50" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center" >
+                <button type="submit" class="btn btn-default btn-md rounded">Enviar</button>
+            </div>
+            </form>
+        </div>
     </body>
 
     </html>
+    <script>
+    $(document).ready(function() {
+            var date = new Date();
+            var time = date.toISOString();
+            var time_split = time.split("T");
+            $("#dia").attr("value", time_split[0]);
+            $("#dia").attr("min", time_split[0]);
+        })
+    </script>
 <?php
 }
 ?>
