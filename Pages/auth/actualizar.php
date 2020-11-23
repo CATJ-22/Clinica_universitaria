@@ -1,11 +1,11 @@
 <?php
 session_start();
 include('../../Procesos/database/conexion_DB.php');
-$n= $_SESSION['nombre'];
-$nombre= explode(" ", $n);
-$sql="SELECT * from usuarios where Nombre='$nombre[0]'";
-$result=mysqli_query($conn,$sql);
-$info= mysqli_fetch_row($result);
+$n = $_SESSION['nombre'];
+$nombre = explode(" ", $n);
+$sql = "SELECT * from usuarios where Nombre='$nombre[0]'";
+$result = mysqli_query($conn, $sql);
+$info = mysqli_fetch_row($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,22 +27,33 @@ $info= mysqli_fetch_row($result);
     <script type="text/javascript" src="../../lib/js/mdb.min.js"></script>
     <title>Clinica Universitaria</title>
 </head>
-
+<header>
+    <div class="col text-center d-flex justify-content-center">
+        <div class="row border rounded border-light title">
+            <div class="col-sm-1 mt-3 mr-3 mb-3">
+                <img src="../../Style/Image/utp.png" alt="" width="100px">
+            </div>
+            <div class="col mt-3 mr-3 mb-3">
+                <h1>Universidad Tecnologica de Panamá</h1>
+                <h3>Clinica Universitaria</h3>
+            </div>
+        </div>
+    </div>
+</header>
 <body>
-    <div class="col-md-3 registro">
-        <!-- Default form register -->
-        <form action="../../Procesos/auth/registro_P.php" class="text-center border border-light p-5" method="post" onsubmit="VerificarClave()">
+    <div class="col d-flex justify-content-center ">
+        <div class="col-sm-5 regist">
+<form action="../../Procesos/auth/actualizar_P.php" class="text-center border border-light p-5" method="post" onsubmit="VerificarClave()">
             <div class="row"> <a class="btn " href="../web/usuario/bienvenida.php"><i class="fas fa-chevron-left prefix"></i> VOLVER</a></div>
             <p class="h4 mb-4">Actualizacion de Perfil</p>
-            <?php if (isset($_GET['msg'])) echo $_GET['msg']; ?>
             <div class="row">
                 <div class="col">
                     <div class="text-left">
                         <label class="h6" for="nombre">Nombre</label>
                     </div>
                     <div class="input-group">
-                        <input id="id" name="id" type="text" value="<?php echo $info[0]?>" class="form-control" placeholder="id" hidden>
-                        <input id="nombre" name="nombre" value="<?php echo $info[1]?>" type="text" class="form-control" placeholder="Nombre" required>
+                        <input id="id" name="id" type="text" value="<?php echo $info[0] ?>" class="form-control" placeholder="id" hidden>
+                        <input id="nombre" name="nombre" value="<?php echo $info[1] ?>" type="text" class="form-control" placeholder="Nombre" required>
                     </div>
                 </div>
                 <div class="col">
@@ -50,7 +61,7 @@ $info= mysqli_fetch_row($result);
                         <label class="h6" for="apellido">Apellido</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input id="apellido" name="apellido" type="text" value="<?php echo $info[2]?>" class="form-control" placeholder="Apellido" required>
+                        <input id="apellido" name="apellido" type="text" value="<?php echo $info[2] ?>" class="form-control" placeholder="Apellido" required>
                     </div>
                 </div>
             </div>
@@ -60,7 +71,7 @@ $info= mysqli_fetch_row($result);
                         <label class="h6" for="cedula">Cedula</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input id="cedula" name="cedula" type="text" value="<?php echo $info[3]?>" class="form-control" placeholder="X-XXX-XXXX" required>
+                        <input id="cedula" name="cedula" type="text" value="<?php echo $info[3] ?>" class="form-control" placeholder="X-XXX-XXXX" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -68,7 +79,7 @@ $info= mysqli_fetch_row($result);
                         <label class="h6" for="edad">Edad</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input id="edad" name="edad" type="number" min="0" value="<?php echo $info[4]?>" class="form-control" placeholder="0" required>
+                        <input id="edad" name="edad" type="number" min="0" value="<?php echo $info[4] ?>" class="form-control" placeholder="0" required>
                     </div>
                 </div>
             </div>
@@ -78,7 +89,7 @@ $info= mysqli_fetch_row($result);
                         <label class="h6" for="correo">Correo</label>
                     </div>
                     <div class="input-group mb-3 ">
-                        <input id="correo" name="correo" value="<?php echo $info[5]?>" type="email" class="form-control" placeholder="example@utp.ac.pa" required>
+                        <input id="correo" name="correo" value="<?php echo $info[5] ?>" type="email" class="form-control" placeholder="example@utp.ac.pa" required>
                     </div>
                 </div>
             </div>
@@ -88,7 +99,7 @@ $info= mysqli_fetch_row($result);
                         <label class="h6" for="contrasena">Contraseña</label>
                     </div>
                     <div class="input-group">
-                        <input id="contrasena" name="contrasena"  value="<?php echo $info[6]?>" type="password" class="form-control" placeholder="***********" required>
+                        <input id="contrasena" name="contrasena" value="<?php echo $info[6] ?>" type="password" class="form-control" placeholder="***********" required>
                         <div class="input-group-append">
                             <button class="btn-primary rounded showpass" id="pass" type="button"><i id="eyeopen" class="fas fa-eye prefix"></i><i id="eyeclose" class="fas fa-eye-slash prefix" hidden></i></button>
                         </div>
@@ -98,7 +109,8 @@ $info= mysqli_fetch_row($result);
                     <div class="text-left">
                         <label class="h6" for="contrasena2">Repetir Contraseña</label>
                     </div>
-                    <input id="contrasena2" type="password" class="form-control" value="<?php echo $info[6]?>" placeholder="***********" required>
+                    <input id="oldpw" name="oldpw" type="text" value="<?php echo $info[6] ?>" class="form-control" placeholder="id" hidden>
+                    <input id="contrasena2" type="password" class="form-control" value="<?php echo $info[6] ?>" placeholder="***********" required>
                     <div class="invalid-feedback">
                         Contraseña incorrecta o esta vacio.
                     </div>
@@ -113,27 +125,37 @@ $info= mysqli_fetch_row($result);
                 <em>Por primera vez</em> debido a que esta cifrada, <br> si no desea cambiarla dejela igual
             </p>
         </form>
+        </div>
+
+        
+
     </div>
-    <!-- Default form register -->
 </body>
 
 </html>
 <script>
     $(document).ready(function() {
-        setTimeout(function() {
-            $(".alert").fadeOut(1500);
-        }, 3000);
-
-
-        $("#contrasena2").change(function() {
+        $("#contrasena").keyup(function() {
             pass1 = $("#contrasena").val();
             pass2 = $("#contrasena2").val();
             if (pass1 != pass2) {
                 $("#btnreg").attr("disabled", "");
                 $("#contrasena2").addClass("is-invalid");
             } else {
-                $("#btnreg").removeAttr("disable");
-                $("#contrasena2").removeClass("is-valid");
+                $("#btnreg").removeAttr("disabled");
+                $("#contrasena2").removeClass("is-invalid").addClass("is-valid");
+            }
+        });
+
+        $("#contrasena2").keyup(function() {
+            pass1 = $("#contrasena").val();
+            pass2 = $("#contrasena2").val();
+            if (pass1 != pass2) {
+                $("#btnreg").attr("disabled", "");
+                $("#contrasena2").addClass("is-invalid");
+            } else {
+                $("#btnreg").removeAttr("disabled");
+                $("#contrasena2").removeClass("is-invalid").addClass("is-valid");
             }
         });
 

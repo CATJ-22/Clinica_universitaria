@@ -25,7 +25,7 @@ if ($_SESSION['rol'] == "administrativo") {
     <header>
         <!--Navbar -->
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
-            <a class="navbar-brand" href=""><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px">  Clinica universitaria</a>
+            <a class="navbar-brand" href=""><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px"> Clinica universitaria</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,14 +40,6 @@ if ($_SESSION['rol'] == "administrativo") {
                     <li class="nav-item">
                         <a class="nav-link" href="#">Calendario de citas</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración
-                        </a>
-                        <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-                        <a class="dropdown-item" href="#">Crear Usuario</a>
-                            <a class="dropdown-item" href="#">Lista de Usuario</a>
-                        </div>
-                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
                     <li class="nav-item avatar dropdown">
@@ -55,7 +47,7 @@ if ($_SESSION['rol'] == "administrativo") {
                             <?php echo $_SESSION['nombre'] ?>[<?php echo $_SESSION['rol'] ?>] <img src="../../../Style/Image/adminstrativo.svg" class="rounded-circle z-depth-0" alt="avatar image" style="width: 35px;">
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
-                            <a class="dropdown-item" href="#">Editar Pefil</a>
+                            <a class="dropdown-item" href="../../auth/actualizar.php">Editar Pefil</a>
                             <a class="dropdown-item" href="../../../index.php">Cerrar sesion</a>
                         </div>
                     </li>
@@ -69,7 +61,31 @@ if ($_SESSION['rol'] == "administrativo") {
 
     </body>
 
+    <?php if (isset($_GET['msg'])) { ?>
+        <footer class="col d-flex justify-content-end fixed-bottom">
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" style="margin-bottom: 1%;">
+                <div class="toast-header bg-info text-white">
+                    <div class="col d-flex justify-content-start">
+                        <img class=" rounded mr-2 " width="20" height="20" src="../../../Style/Image/informacion.svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                        <strong class="mr- ">AVISO!!!</strong>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="toast-body"><?php echo $_GET['msg']; ?></div>
+            </div>
+        </footer>
+    <?php } ?>
+
     </html>
+    <script>
+        $(document).ready(function() {
+            $('.toast').toast('show')
+        });
+    </script>
 <?php
 }
 ?>

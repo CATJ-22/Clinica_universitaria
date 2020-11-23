@@ -22,7 +22,7 @@ if (isset($_REQUEST['correo']) && isset($_REQUEST['contrasena'])) {
             header('location:../../Pages/web/administrativo/bienvenida.php');
         }
     } else {
-        header('Location: ../../index.php?msg=<div class="alert alert-danger" role="alert">Correo o Contraseña incorrecta, intente otra vez</div>');
+        header('Location: ../../index.php?msg=Correo o Contraseña incorrecta, intente otra vez');
         exit;
     }
 }
