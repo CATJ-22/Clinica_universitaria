@@ -8,13 +8,14 @@ if (isset($_REQUEST['correo']) && isset($_REQUEST['contrasena'])) {
     $pass = md5($_REQUEST['contrasena']);
 
     //------------------- Verificamos con la BD
-    $sql = "SELECT Nombre, Apellido, Rol FROM usuarios WHERE Correo='$email' and Pass = '$pass'";
+    $sql = "SELECT Nombre, Apellido, Rol, Cedula FROM usuarios WHERE Correo='$email' and Pass = '$pass'";
     $rol = mysqli_query($conn, $sql);
     $result = mysqli_fetch_row($rol);
     //-------------------------------------
 
     if (isset($result[0])) {
         $_SESSION['rol'] = $result[2];
+        $_SESSION['cedula'] = $result[3];
         $_SESSION['nombre'] = "$result[0] $result[1] ";
         if($_SESSION['rol']=="usuario"){
         header('location:../../Pages/web/usuario/bienvenida.php');

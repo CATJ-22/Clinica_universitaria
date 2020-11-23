@@ -13,6 +13,7 @@ if ($_SESSION['rol'] == "usuario") {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
         <link rel="stylesheet" href="../../../lib/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../../lib/css/mdb.min.css">
+        <link rel="stylesheet" href="../../../lib/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="../../../lib/css/style.css">
         <link rel="stylesheet" href="../../../Style/css/index.css">
         <!--Scripts -->
@@ -20,6 +21,7 @@ if ($_SESSION['rol'] == "usuario") {
         <script type="text/javascript" src="../../../lib/js/popper.min.js"></script>
         <script type="text/javascript" src="../../../lib/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../../../lib/js/mdb.min.js"></script>
+        <script type="text/javascript" src="../../../lib/js/jquery.dataTables.min.js"></script>
         <title>Clinica Universitaria</title>
     </head>
     <header>
@@ -62,7 +64,13 @@ if ($_SESSION['rol'] == "usuario") {
     </header>
 
     <body>
-
+        <div class="col mt-5 d-flex justify-content-center">
+            <div class="col-6">
+                <h1 class="text-center title mb-5">Historial de Consultas</h1>
+                <table id="example" class="display text-center  table-bordered border-dark compact" width="100%"></table>
+            </div>
+        </div>
+        
     </body>
 
     <?php if (isset($_GET['msg'])) { ?>
@@ -70,13 +78,13 @@ if ($_SESSION['rol'] == "usuario") {
             <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" style="margin-bottom: 1%;">
                 <div class="toast-header bg-info text-white">
                     <div class="col d-flex justify-content-start">
-                    <img class=" rounded mr-2 " width="20" height="20" src="../../../Style/Image/informacion.svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                    <strong class="mr- ">AVISO!!!</strong>
+                        <img class=" rounded mr-2 " width="20" height="20" src="../../../Style/Image/informacion.svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                        <strong class="mr- ">AVISO!!!</strong>
                     </div>
                     <div class="col d-flex justify-content-end">
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                 </div>
                 <div class="toast-body"><?php echo $_GET['msg']; ?></div>
@@ -85,10 +93,83 @@ if ($_SESSION['rol'] == "usuario") {
     <?php } ?>
 
     </html>
+    <?php
+    include('../../../Procesos/database/conexion_DB.php');
+    $cedula = $_SESSION['cedula'];
+    $sql = "SELECT Cedula, Cita, Dia, Hora, Observacion, Estado, Id from solicitudes where Cedula='$cedula'";
+    $result = mysqli_query($conn, $sql);
+    $info = mysqli_fetch_all($result);
+    ?>
     <script>
         $(document).ready(function() {
+            verInfoCliente(<?php echo json_encode($info); ?>);
             $('.toast').toast('show')
         });
+
+        function verInfoCliente(data) {
+            $('#example').DataTable({
+                data: data,
+                columns: [
+                    {
+                        title: '<i class="far fa-calendar-times"></i>',
+                        width: "5px",
+                        data: "6",
+                        render: function(data, type, row, meta) {
+                            if (row[5] === "rechazado") {
+                                return '<a class=" rounded text-center text-danger" style="font-size: 20px;" href="../../../Procesos/usuario/eliminarCita_P.php?id='+data+'"><i class="far fa-calendar-times"></i></a>';
+                            }else{
+                                return '<a class=" rounded text-center text-danger" href="../../../Procesos/usuario/eliminarCita_P.php?id='+data+'" hidden><i class="far fa-calendar-times"></i></a>';
+                            }
+                        }
+                    },
+                    {
+                        title: "Cedula",
+                        width: "70px",
+                        data: "0"
+                    },
+                    {
+                        title: "Tipo de Cita",
+                        data: "1"
+                    },
+                    {
+                        title: "Fecha",
+                        width: "70px",
+                        data: "2"
+                    },
+                    {
+                        title: "Hora",
+                        width: "50px",
+                        data: "3"
+                    },
+                    {
+                        title: "Observación",
+                        data: "4"
+                    },
+                    {
+                        title: "Estado",
+                        width: "30px",
+                        data: "5",
+                        render: function(data, type, row, meta) {
+                            if (data === "revision") {
+                                return '<div class="alert alert-warning text-center" role="alert">' + data + '</div>';
+                            } else if (data === "aprovado") {
+                                return '<div class="alert alert-success" role="alert">' + data + '</div>';
+                            } else if (data === "rechazado") {
+                                return '<div class="alert alert-danger" role="alert">' + data + '</div>';
+                            }
+
+                        }
+                    }
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ filas por paginas",
+                    "zeroRecords": "No encontrado - Lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "0 Entardas Disponibles",
+                    "infoFiltered": "(Filtrando: _MAX_ total de entradas)"
+                }
+            });
+        }
     </script>
 <?php
 }
