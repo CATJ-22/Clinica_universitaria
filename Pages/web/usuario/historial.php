@@ -147,15 +147,15 @@ if ($_SESSION['rol'] == "usuario") {
                     },
                     {
                         title: "Estado",
-                        width: "30px",
+                        width: "90px",
                         data: "5",
                         render: function(data, type, row, meta) {
                             if (data === "revision") {
-                                return '<div class="alert alert-warning text-center" role="alert">' + data + '</div>';
+                                return '<div class="alert alert-warning text-center text-dark" role="alert"><i class="far fa-clock"></i><b> ' + data + '</b></div>';
                             } else if (data === "aprovado") {
-                                return '<div class="alert alert-success" role="alert">' + data + '</div>';
+                                return '<div class="alert alert-success text-center text-dark" role="alert"><i class="far fa-check-circle"></i><b> ' + data + '</b></div>';
                             } else if (data === "rechazado") {
-                                return '<div class="alert alert-danger" role="alert">' + data + '</div>';
+                                return '<div class="alert alert-danger text-center text-dark" role="alert"><i class="fas fa-times"></i><b> ' + data + '</b></div>';
                             }
 
                         }
