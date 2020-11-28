@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['rol'] == "usuario") {
+if ($_SESSION['rol'] == "administrativo") {
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -27,30 +27,26 @@ if ($_SESSION['rol'] == "usuario") {
     <header>
         <!--Navbar -->
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
-            <a class="navbar-brand mr-5 title" href="bienvenida.php"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px"> Clinica universitaria</a>
+            <a class="navbar-brand" href="bienvenida.php"><img src="../../../Style/Image/utp.png" class="bg-white rounded" alt="" width="50px"> Clinica universitaria</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="bienvenida.php"><i class="fas fa-home"></i> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="solicitud.php"><i class="fas fa-clipboard-list"></i> Solicitud de citas</a>
+                        <a class="nav-link" href="bienvenida.php"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="historial.php"><i class="fas fa-history"></i> Historial de citas solicitadas</a>
+                        <a class="nav-link" href="#"><i class="fas fa-notes-medical"></i> Administracion de citas solicitadas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://utp.ac.pa/clinica-universitaria"><i class="fas fa-info"></i> Información sobre la clinica</a>
+                        <a class="nav-link" href="registroPaciente.php"><i class="fas fa-file-signature"></i> Registar informacion del paciente</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
                     <li class="nav-item avatar dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?php echo $_SESSION['nombre'] ?>[<?php echo $_SESSION['rol'] ?>] <img src="../../../Style/Image/usuario.svg" class="rounded-circle z-depth-0" alt="avatar image" style="width: 35px;">
+                            <?php echo $_SESSION['nombre'] ?>[<?php echo $_SESSION['rol'] ?>] <img src="../../../Style/Image/adminstrativo.svg" class="rounded-circle z-depth-0" alt="avatar image" style="width: 35px;">
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
                             <a class="dropdown-item" href="../../auth/actualizar.php"><i class="fas fa-user-edit"></i> Editar Pefil</a>
@@ -64,13 +60,20 @@ if ($_SESSION['rol'] == "usuario") {
     </header>
 
     <body>
-        <div class="col mt-5 d-flex justify-content-center">
-            <div class="col-6">
-                <h1 class="text-center title mb-5">Historial de Consultas</h1>
-                <table id="example" class="display text-center  table-bordered border-dark compact" data-page-length="10" width="100%"></table>
+        <div class="col">
+    <div class="row mt-5 d-flex justify-content-center">
+            <div class="col-8">
+                <h1 class="text-center title mb-5">Administracion de Citas Solicitadas</h1>
+                <h3 class="text-center title ">Por Revizar</h3>
+                <table id="example" class="display text-center  table-bordered border-dark " data-page-length="5" width="100%"></table>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-8">
+            <h3 class="text-center title ">Aprovadas</h3>
+                <table id="example2" class="display text-center  table-bordered border-dark compact" data-page-length="5" width="100%"></table>
             </div>
         </div>
-        
+        </div>
     </body>
 
     <?php if (isset($_GET['msg'])) { ?>
@@ -79,7 +82,7 @@ if ($_SESSION['rol'] == "usuario") {
                 <div class="toast-header bg-info text-white">
                     <div class="col d-flex justify-content-start">
                         <img class=" rounded mr-2 " width="20" height="20" src="../../../Style/Image/informacion.svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                        <strong class="mr- ">AVISO!!!</strong>
+                        <strong class="">AVISO!!!</strong>
                     </div>
                     <div class="col d-flex justify-content-end">
                         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -93,71 +96,135 @@ if ($_SESSION['rol'] == "usuario") {
     <?php } ?>
 
     </html>
+
     <?php
-    include('../../../Procesos/usuario/consultData_P.php');
+    include('../../../Procesos/administrativo/citastData_P.php');
     
     ?>
     <script>
         $(document).ready(function() {
-            verInfoCliente(<?php echo json_encode($info); ?>);
+            verInfoClienteR(<?php echo json_encode($revision); ?>);
+            verInfoClienteA(<?php echo json_encode($aprovadas); ?>);
             $('.toast').toast('show')
         });
 
-        function verInfoCliente(data) {
+        function verInfoClienteR(data) {
             $('#example').DataTable({
                 data: data,
                 columns: [
                     {
-                        title: '<i class="far fa-calendar-times"></i>',
-                        width: "5px",
-                        data: "6",
-                        render: function(data, type, row, meta) {
-                            if (row[5] === "rechazado") {
-                                return '<a class=" rounded text-center text-danger" style="font-size: 20px;" href="../../../Procesos/usuario/eliminarCita_P.php?id='+data+'"><i class="far fa-calendar-times"></i></a>';
-                            }else{
-                                return '<a class=" rounded text-center text-danger" href="../../../Procesos/usuario/eliminarCita_P.php?id='+data+'" hidden><i class="far fa-calendar-times"></i></a>';
-                            }
-                        }
+                        title: 'Nombre',
+                        width: "90px",
+                        data:"7"
                     },
                     {
                         title: "Cedula",
                         width: "70px",
-                        data: "0"
+                        data: "1"
                     },
                     {
                         title: "Tipo de Cita",
-                        data: "1"
+                        width: "95px",
+                        data: "2"
                     },
                     {
                         title: "Fecha",
                         width: "70px",
-                        data: "2"
+                        data: "3"
                     },
                     {
                         title: "Hora",
                         width: "50px",
-                        data: "3"
+                        data: "4"
                     },
                     {
                         title: "Observación",
-                        data: "4"
+                        data: "5"
                     },
                     {
                         title: "Estado",
                         width: "90px",
-                        data: "5",
+                        data: "6",
                         render: function(data, type, row, meta) {
                             if (data === "revision") {
-                                return '<div class="alert-warning text-center text-dark h-25" role="alert"><i class="far fa-clock"></i><b> ' + data + '</b></div>';
-                            } else if (data === "aprovado") {
-                                return '<div class="alert-success text-center text-dark h-25" role="alert"><i class="far fa-check-circle"></i><b> ' + data + '</b></div>';
-                            } else if (data === "rechazado") {
-                                return '<div class="alert-danger text-center text-dark h-25" role="alert"><i class="fas fa-times"></i><b> ' + data + '</b></div>';
+                                return '<div class=" alert-warning text-center text-dark h-25" role="alert"><i class="far fa-clock"></i><b> ' + data + '</b></div>';
                             }
-
+                        }
+                    },
+                    {
+                        title: "Acción",
+                        width: "180px",
+                        data: "0",
+                        render: function(data, type, row, meta) {
+                                return '<div class="col d-flex justify-content-center"><div class="w-50 rounded btn-success mr-1"><a href="../../../Procesos/administrativo/estadoCita_P.php?tipo=AR&id='+data+'&estado=aprovado" class=" text-center text-white h-25" ><b>Aprovar</b></a></div><div class="w-50 rounded btn-danger"><a href="../../../Procesos/administrativo/estadoCita_P.php?tipo=AR&id='+data+'&estado=rechazado" class="text-center text-white h-25" ><b>Rechazar</b></a></div></div>';
+                                
                         }
                     }
                 ],
+                lengthMenu:"5",
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ filas por paginas",
+                    "zeroRecords": "No encontrado - Lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "0 Entardas Disponibles",
+                    "infoFiltered": "(Filtrando: _MAX_ total de entradas)"
+                }
+            });
+        }
+        function verInfoClienteA(data) {
+            $('#example2').DataTable({
+                data: data,
+                columns: [
+                    {
+                        title: 'Nombre',
+                        width: "90px",
+                        data:"7"
+                    },
+                    {
+                        title: "Cedula",
+                        width: "70px",
+                        data: "1"
+                    },
+                    {
+                        title: "Tipo de Cita",
+                        width: "90px",
+                        data: "2"
+                    },
+                    {
+                        title: "Fecha",
+                        width: "70px",
+                        data: "3"
+                    },
+                    {
+                        title: "Hora",
+                        width: "50px",
+                        data: "4"
+                    },
+                    {
+                        title: "Observación",
+                        data: "5"
+                    },
+                    {
+                        title: "Estado",
+                        width: "100px",
+                        data: "6",
+                        render: function(data, type, row, meta) {
+                            if (data === "aprovado") {
+                                return '<div class="alert-success text-center text-dark h-25" role="alert"><i class="far fa-check-circle"></i><b> ' + data + '</b></div>';
+                            }
+                        }
+                    },
+                    {
+                        title: "Acción",
+                        width: "180px",
+                        data: "0",
+                        render: function(data, type, row, meta) {
+                                return '<div class="col d-flex justify-content-center"><div class="w-50 rounded btn-success mr-1"><a href="../../../Procesos/administrativo/estadoCita_P.php?tipo=AA&id='+data+'&estado=atendido" class=" text-center text-white h-25" ><b>Atendido</b></a></div><div class="w-50 rounded btn-warning"><a href="../../../Procesos/administrativo/estadoCita_P.php?tipo=AA&id='+data+'&estado=ausente" class=" text-center text-white h-25" ><b>Ausente</b></a></div></div>';
+                            
+                        }
+                    }
+                ],
+                lengthMenu: "5",
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ filas por paginas",
                     "zeroRecords": "No encontrado - Lo sentimos",
