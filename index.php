@@ -1,8 +1,5 @@
 <?php
 session_start();
-if ($_SESSION) {
-    unset($_SESSION['rol']);
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,16 +56,6 @@ if ($_SESSION) {
                         <button type="button" class="btn-primary input-group-text showpass" id="basic-addon2"><i id="eyeopen" class="fas fa-eye prefix"></i><i id="eyeclose" class="fas fa-eye-slash prefix" hidden></i></button>
                     </div>
                 </div>
-                <div class="d-flex justify-content-around">
-                    <div>
-                        <!-- Remember me -->
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="recordme" name="recordar">
-                            <label class="custom-control-label" for="recordme">Recordarme</label>
-                        </div>
-                    </div>
-                </div>
-
 
                 <!-- Sign in button -->
                 <button class="btn btn-block my-4" type="submit">Iniciar Sesión</button>
@@ -109,6 +96,7 @@ if ($_SESSION) {
     $(document).ready(function() {
         $('.toast').toast('show');
 
+
         $("#contrasena").change(function() {
             var a = document.getElementById('recordme').value;
             console.log(a);
@@ -142,5 +130,9 @@ if ($_SESSION) {
                 $("#basic-addon2").removeClass("hidepass").addClass("showpass");
             }
         });
+    });
+
+    $("#remember").change(function() {
+        alert($("#remember").val());
     });
 </script>
