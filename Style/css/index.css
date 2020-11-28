@@ -23,6 +23,13 @@
 
 
 /*GENERALS*/
+.bgauth{
+    background-image: url("../Image/bgauth.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
 .navbar-dark{
     background-color: #68006b !important;
 }

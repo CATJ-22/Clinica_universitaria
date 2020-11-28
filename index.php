@@ -1,8 +1,11 @@
 <?php
 session_start();
+if ($_SESSION) {
+    unset($_SESSION['rol']);
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bgauth">
 
 <head>
     <meta charset="UTF-8">
@@ -23,7 +26,7 @@ session_start();
 </head>
 <header>
     <div class="col text-center d-flex justify-content-center">
-        <div class="row border rounded border-light title">
+        <div class="row border rounded border-light title bg-white">
             <div class="col-sm-1 mt-3 mr-3 mb-3">
                 <img src="Style/Image/utp.png" alt="" width="100px">
             </div>
@@ -35,7 +38,7 @@ session_start();
     </div>
 </header>
 
-<body>
+<body style="background-color: transparent; backdrop-filter: blur(10px); height:40rem !important">
     <div class="col d-flex justify-content-center">
         <div id="div-content" class="col login " style="max-width: 30rem;">
 
@@ -56,6 +59,7 @@ session_start();
                         <button type="button" class="btn-primary input-group-text showpass" id="basic-addon2"><i id="eyeopen" class="fas fa-eye prefix"></i><i id="eyeclose" class="fas fa-eye-slash prefix" hidden></i></button>
                     </div>
                 </div>
+
 
                 <!-- Sign in button -->
                 <button class="btn btn-block my-4" type="submit">Iniciar Sesión</button>
@@ -96,7 +100,6 @@ session_start();
     $(document).ready(function() {
         $('.toast').toast('show');
 
-
         $("#contrasena").change(function() {
             var a = document.getElementById('recordme').value;
             console.log(a);
@@ -130,9 +133,5 @@ session_start();
                 $("#basic-addon2").removeClass("hidepass").addClass("showpass");
             }
         });
-    });
-
-    $("#remember").change(function() {
-        alert($("#remember").val());
     });
 </script>
