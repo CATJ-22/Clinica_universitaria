@@ -72,8 +72,7 @@ if ($_SESSION['rol'] == "usuario") {
                             <h3>Clínica Universitaria</h3>
                         </div>
                         <div class="card-body text-justify">
-                            <p class="card-text">La Clínica Universitaria brinda servicios de salud y lleva a cabo actividades clínicas y de capacitación en temas de salud, dirigidas a la comunidad universitaria estudiantil, docente, administrativa y de investigación de la Universidad.</p>
-                            <a target="_blank" href="https://utp.ac.pa/clinica-universitaria" class="btn btn-primary">Mas Información</a>
+                            <p class="card-text" style="font-size: 18px;">La Clínica Universitaria brinda servicios de salud y lleva a cabo actividades clínicas y de capacitación en temas de salud, dirigidas a la comunidad universitaria estudiantil, docente, administrativa y de investigación de la Universidad.</p>
                         </div>
                     </div>
                 </div>

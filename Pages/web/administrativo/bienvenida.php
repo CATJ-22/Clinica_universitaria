@@ -58,25 +58,27 @@ if ($_SESSION['rol'] == "administrativo") {
     </header>
 
     <body>
-        <div class="row mt-5">
-            <div class="col d-flex justify-content-end">
+        <div class="col">
+        <div id="div-content" class="row mt-5 row-cols-2 d-flex justify-content-center">
+            <div class="col d-flex justify-content-end mb-3">
                 <!-- Card -->
                 <div class="card" style="width: 30rem;">
-
-                    <!--Card content-->
-                    <div class="card-body">
-
+                    <div class="card-header">
                         <!--Title-->
-                        <h4 class="card-title title text-center mb-5 mt-5"><b>Total de Pacientes Atendidos o Ausentados y Citas Por Revisar</b></h4>
+                        <h2 class="card-title title text-center"><b>Total de Pacientes Atendidos o Ausentados y Citas Por Revisar</b></h2>
+                    </div>
+                    <!--Card content-->
+                    <div class="card-body ">
+                        <div class="mb-5"></div>
                         <!--Text-->
-                        <canvas id="labelChart1"></canvas>
+                        <canvas id="labelChart1" ></canvas>
 
                     </div>
 
                 </div>
                 <!-- Card -->
             </div>
-            <div class="col">
+            <div class="col d-fle mb-3">
                 <!-- Card -->
                 <div class="card" style="width: 30rem;">
 
@@ -104,6 +106,7 @@ if ($_SESSION['rol'] == "administrativo") {
                 <!-- Card -->
             </div>
         </div>
+        </div>
     </body>
 
     <?php if (isset($_GET['msg'])) { ?>
@@ -130,6 +133,17 @@ if ($_SESSION['rol'] == "administrativo") {
     <script>
         $(document).ready(function() {
             $('.toast').toast('show')
+            if (screen.width < 768){
+                $("#div-content").removeClass("row-cols-2").addClass("row-cols-1");
+            }
+        });
+
+        $(window).resize(function() {
+            if (screen.width < 768){
+                $("#div-content").removeClass("row-cols-2").addClass("row-cols-1");
+            }else{
+                $("#div-content").removeClass("row-cols-1").addClass("row-cols-2");
+            }
         });
 
         var ctxP = document.getElementById("labelChart1").getContext('2d');

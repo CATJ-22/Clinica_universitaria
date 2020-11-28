@@ -71,7 +71,7 @@
                             <label class="h6" for="edad">Edad</label>
                         </div>
                         <div class="input-group mb-3">
-                            <input id="edad" name="edad" type="number" min="0" class="form-control" placeholder="0" required>
+                            <input id="edad" name="edad" type="number" min="17" class="form-control" placeholder="0" required>
                         </div>
                     </div>
                 </div>
