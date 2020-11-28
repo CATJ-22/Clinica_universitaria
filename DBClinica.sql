@@ -28,12 +28,16 @@ CREATE TABLE IF NOT EXISTS `solicitudes` (
   `Created_at` timestamp NULL DEFAULT current_timestamp(),
   `Updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla clinica.solicitudes: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `solicitudes` DISABLE KEYS */;
 INSERT IGNORE INTO `solicitudes` (`id`, `Cedula`, `Cita`, `Dia`, `Hora`, `Observacion`, `Estado`, `Created_at`, `Updated_at`) VALUES
-	(2, '8-294-369', 'Consulta General', '2020-11-23', '13:00:00', 'me siento mareado', 'revision', '2020-11-23 00:14:33', '2020-11-23 12:47:20');
+	(2, '8-294-369', 'Consulta General', '2020-11-29', '13:00:00', 'me siento mareado', 'aprovado', '2020-11-23 00:14:33', '2020-11-28 02:44:31'),
+	(3, '8-294-369', 'Consulta General', '2020-11-29', '13:00:00', 'me siento mareado', 'ausente', '2020-11-23 00:14:33', '2020-11-28 01:59:15'),
+	(4, '8-294-369', 'Consulta General', '2020-11-29', '13:00:00', 'me siento mareado', 'atendido', '2020-11-23 00:14:33', '2020-11-28 01:59:22'),
+	(5, '8-294-369', 'Consulta General', '2020-11-29', '13:00:00', 'me siento mareado', 'revision', '2020-11-23 00:14:33', '2020-11-28 01:57:04'),
+	(6, '8-294-369', 'Consulta General', '2020-11-29', '13:00:00', 'me siento mareado', 'revision', '2020-11-23 00:14:33', '2020-11-28 01:57:04');
 /*!40000 ALTER TABLE `solicitudes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla clinica.usuarios
