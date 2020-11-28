@@ -31,13 +31,13 @@ if ($_SESSION['rol'] == "administrativo") {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="bienvenida.php"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="administracion.php"><i class="fas fa-notes-medical"></i> Administracion de citas solicitadas</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="#"><i class="fas fa-file-signature"></i> Registrar informacion del paciente</a>
                     </li>
                 </ul>
@@ -58,52 +58,7 @@ if ($_SESSION['rol'] == "administrativo") {
     </header>
 
     <body>
-        <div class="row mt-5">
-            <div class="col d-flex justify-content-end">
-                <!-- Card -->
-                <div class="card" style="width: 30rem;">
 
-                    <!--Card content-->
-                    <div class="card-body">
-
-                        <!--Title-->
-                        <h4 class="card-title title text-center mb-5 mt-5"><b>Total de Pacientes Atendidos o Ausentados y Citas Por Revisar</b></h4>
-                        <!--Text-->
-                        <canvas id="labelChart1"></canvas>
-
-                    </div>
-
-                </div>
-                <!-- Card -->
-            </div>
-            <div class="col">
-                <!-- Card -->
-                <div class="card" style="width: 30rem;">
-
-                    <!--Card image-->
-                    <div class="view overlay d-flex justify-content-center">
-                        <img class="card-img-top img-fluid " style="width: 70%;" src="https://images-na.ssl-images-amazon.com/images/I/517RjQaFZ3L.png" alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                    <!--Card content-->
-                    <div class="card-body">
-
-                        <!--Title-->
-                        <h4 class="card-title">Más Caracteristicas en camino!!</h4>
-                        <!--Text-->
-                        <p class="card-text">Trabajo en Progreso.</p>
-                        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                        <button type="button" class="btn btn-light-blue btn-md" disabled>Muy pronto...</button>
-
-                    </div>
-
-                </div>
-                <!-- Card -->
-            </div>
-        </div>
     </body>
 
     <?php if (isset($_GET['msg'])) { ?>
@@ -126,55 +81,9 @@ if ($_SESSION['rol'] == "administrativo") {
     <?php } ?>
 
     </html>
-    <?php include('../../../Procesos/administrativo/widgetBienvenida_P.php'); ?>
     <script>
         $(document).ready(function() {
             $('.toast').toast('show')
-        });
-
-        var ctxP = document.getElementById("labelChart1").getContext('2d');
-        var myPieChart = new Chart(ctxP, {
-            plugins: [ChartDataLabels],
-            type: 'pie',
-            data: {
-                labels: ["Atendido", "Ausentado", "Por Revisar"],
-                datasets: [{
-                    data: [<?php echo $data; ?>],
-                    backgroundColor: ["#46BFBD", "#FDB45C", "#616774"],
-                    hoverBackgroundColor: ["#5AD3D1", "#FFC870", "#A8B3C5"]
-                }]
-            },
-            options: {
-                responsive: true,
-                legend: {
-                    position: 'right',
-                    labels: {
-                        padding: 20,
-                        boxWidth: 10
-                    }
-                },
-                plugins: {
-                    datalabels: {
-                        formatter: (value, ctx) => {
-                            let sum = 0;
-                            let dataArr = ctx.chart.data.datasets[0].data;
-                            dataArr.map(data => {
-                                sum += data;
-                            });
-                            let percentage = (value * 100 / sum).toFixed(2) + "%";
-                            return percentage;
-                        },
-                        color: 'white',
-                        labels: {
-                            title: {
-                                font: {
-                                    size: '16'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         });
     </script>
 <?php

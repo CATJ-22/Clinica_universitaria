@@ -18,7 +18,7 @@ if (isset($_REQUEST['correo']) && isset($_REQUEST['contrasena'])) {
         $_SESSION['cedula'] = $result[3];
         $_SESSION['nombre'] = "$result[0] $result[1] ";
         if($_SESSION['rol']=="usuario"){
-        header('location:../../Pages/web/usuario/bienvenida.php');
+        header('location:../../Pages/web/usuario/bienvenida.php',TRUE,301);
         }else{
             header('location:../../Pages/web/administrativo/bienvenida.php');
         }
