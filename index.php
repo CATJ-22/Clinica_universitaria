@@ -5,7 +5,7 @@ if ($_SESSION) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en" class="bgauth">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,7 @@ if ($_SESSION) {
 </head>
 <header>
     <div class="col text-center d-flex justify-content-center">
-        <div class="row border rounded border-light title bg-white">
+        <div class="row border rounded border-light title bg-white z-depth-5"">
             <div class="col-sm-1 mt-3 mr-3 mb-3">
                 <img src="Style/Image/utp.png" alt="" width="100px">
             </div>
@@ -38,11 +38,11 @@ if ($_SESSION) {
     </div>
 </header>
 
-<body style="background-color: transparent; backdrop-filter: blur(10px); height:40rem !important">
+<body style="background-color: transparent;">
     <div class="col d-flex justify-content-center">
         <div id="div-content" class="col login " style="max-width: 30rem;">
 
-            <form class="text-center border rounded border-light p-5 bg-white" action="Procesos/auth/login_P.php" method="POST">
+            <form class="text-center border rounded border-light p-5 bg-white z-depth-5"" action="Procesos/auth/login_P.php" method="POST">
                 <p class="h2 mb-4 title">Inicio de sesion</p>
                 <!-- Email -->
                 <div class="input-group mb-3">

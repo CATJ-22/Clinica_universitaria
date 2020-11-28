@@ -20,7 +20,7 @@
 </head>
 <header>
     <div class="col text-center d-flex justify-content-center">
-        <div class="row border rounded border-light title">
+        <div class="row border rounded border-light title bg-white z-depth-5"">
             <div class="col-sm-1 mt-3 mr-3 mb-3">
                 <img src="../../Style/Image/utp.png" alt="" width="100px">
             </div>
@@ -36,7 +36,7 @@
     <div class="col d-flex justify-content-center">
         <div id="div-content" class="col regist" style="max-width: 50rem;">
             <!-- Default form register -->
-            <form action="../../Procesos/auth/registro_P.php" class="text-center border border-light p-5" method="post" onsubmit="VerificarClave()">
+            <form action="../../Procesos/auth/registro_P.php" class="text-center border border-light p-5 bg-white z-depth-5"" method="post" onsubmit="VerificarClave()">
                 <div class="row"> <a class="btn " href="../../index.php"><i class="fas fa-chevron-left prefix"></i> VOLVER</a></div>
                 <p class="h4 mb-4">Registro de usuario</p>
                 <div class="row">

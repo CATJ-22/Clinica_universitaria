@@ -29,7 +29,7 @@ $info = mysqli_fetch_row($result);
 </head>
 <header>
     <div class="col text-center d-flex justify-content-center">
-        <div class="row border rounded border-light title">
+        <div class="row border rounded border-light title bg-white z-depth-5"">
             <div class="col-sm-1 mt-3 mr-3 mb-3">
                 <img src="../../Style/Image/utp.png" alt="" width="100px">
             </div>
@@ -43,7 +43,7 @@ $info = mysqli_fetch_row($result);
 <body>
     <div class="col d-flex justify-content-center ">
         <div id="div-content" class="col regist" style="max-width: 50rem;">
-<form action="../../Procesos/auth/actualizar_P.php" class="text-center border border-light p-5" method="post" onsubmit="VerificarClave()">
+<form action="../../Procesos/auth/actualizar_P.php" class="text-center border border-light p-5 bg-white z-depth-5"" method="post" onsubmit="VerificarClave()">
             <div class="row"> <a class="btn " onclick="history.back()"><i class="fas fa-chevron-left prefix"></i> VOLVER</a></div>
             <p class="h4 mb-4">Actualizacion de Perfil</p>
             <div class="row">
