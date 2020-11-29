@@ -1,8 +1,8 @@
 <?php
-$database = "clinica";
-$servername = "localhost";
-$username = "root";
-$password = "";
+$database = "dbclinicautp";
+$servername = "mysql.clinicautp.ds507.online";
+$username = "clinicautpdb";
+$password = "Clinica20ds9db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
