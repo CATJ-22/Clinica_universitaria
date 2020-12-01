@@ -39,7 +39,7 @@ if ($_SESSION['rol'] == "administrativo") {
                     <li class="nav-item active">
                         <a class="nav-link" href="#"><i class="fas fa-notes-medical"></i> Administracion de citas solicitadas</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" hidden>
                         <a class="nav-link" href="registroPaciente.php"><i class="fas fa-file-signature"></i> Registar informacion del paciente</a>
                     </li>
                 </ul>
