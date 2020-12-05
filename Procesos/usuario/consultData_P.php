@@ -2,7 +2,7 @@
 if (isset($_SESSION['cedula'])) {
     include('../../../Procesos/database/conexion_DB.php');
     $cedula = $_SESSION['cedula'];
-    $sql = "SELECT Cedula, Cita, Dia, Hora, Observacion, Estado, Id from solicitudes where Cedula='$cedula' AND CONCAT(dia,' ',hora) > NOW() AND Estado<>'ausente' AND Estado<>'atendido'";
+    $sql = "SELECT Cedula, Cita, Dia, Hora, Observacion, Estado, Id from solicitudes where Cedula='$cedula' AND CONCAT(dia,' ',hora) > NOW() AND Estado<>'atendido'";
     $result = mysqli_query($conn, $sql);
     $info = mysqli_fetch_all($result);
 } else {

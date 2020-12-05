@@ -63,7 +63,6 @@ if ($_SESSION['rol'] == "usuario") {
 
     <body>
         <div class="container" style="margin-top: 50px;">
-            <?php if (isset($_GET['msg'])) echo $_GET['msg']; ?>
             <h1 class="text-center title">SOLICITUD DE CITAS</h1>
             <br>
             <form action="../../../Procesos/usuario/guardarSolcitud_P.php" method="POST">
@@ -86,7 +85,7 @@ if ($_SESSION['rol'] == "usuario") {
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="hora">Hora de Cita:</label>
-                            <input id="hora" type="time" class="form-control" name="hora" min="08:30" max="15:30" required>
+                            <input id="hora" type="time" class="form-control" name="hora"  min="08:30" max="15:30" required>
                             
                         </div>
                     </div>
@@ -106,27 +105,27 @@ if ($_SESSION['rol'] == "usuario") {
         </div>
     </body>
 
+    <?php if (isset($_GET['msg'])) { ?>
+        <footer class="col d-flex justify-content-end fixed-bottom">
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" style="margin-bottom: 1%;">
+                <div class="toast-header bg-info text-white">
+                    <div class="col d-flex justify-content-start">
+                        <img class=" rounded mr-2 " width="20" height="20" src="../../../Style/Image/informacion.svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                        <strong class="mr- ">AVISO!!!</strong>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="toast-body"><?php echo $_GET['msg']; ?></div>
+            </div>
+        </footer>
+    <?php } ?>
+
     </html>
-    <script>
-        $(document).ready(function() {
-
-            $("#dia").change(function() {
-                var day = new Date($("#dia").val()).getUTCDay();
-                if ([6, 0].includes(day)) {
-                    document.getElementById("dia").value = '';
-                    $("#dia").addClass("is-invalid").removeClass("is-valid");
-                }else{
-                    $("#dia").addClass("is-valid").removeClass("is-invalid");
-                }
-            });
-
-            var date = new Date();
-            var time = date.toISOString();
-            var time_split = time.split("T");
-            $("#dia").attr("value", time_split[0]);
-            $("#dia").attr("min", time_split[0]);
-        })
-    </script>
+    <script src="js/solicitud.js"></script>
 <?php
 }
 ?>
