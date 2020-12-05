@@ -89,7 +89,7 @@ function verInfoClienteA(data) {
                 width: "100px",
                 data: "6",
                 render: function(data, type, row, meta) {
-                    if (data === "aprovado") {
+                    if (data === "aprobado") {
                         return '<div class="alert-success text-center text-dark h-25" role="alert"><i class="far fa-check-circle"></i><b> ' + data + '</b></div>';
                     }
                 }

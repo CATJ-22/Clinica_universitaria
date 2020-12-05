@@ -44,7 +44,7 @@ function verInfoCliente(data) {
                 render: function(data, type, row, meta) {
                     if (data === "atendido") {
                         return '<div class="alert-warning text-center text-dark h-25" role="alert"><i class="fas fa-user-check"></i><b> ' + data + '</b></div>';
-                    } else if (data === "aprovado") {
+                    } else if (data === "aprobado") {
                         return '<div class="alert-success text-center text-dark h-25" role="alert"><i class="far fa-check-circle"></i><b> ' + data + '</b></div>';
                     } else if (data === "ausente") {
                         return '<div class="alert-danger text-center text-dark h-25" role="alert"><i class="fas fa-user-times"></i><b> ' + data + '</b></div>';

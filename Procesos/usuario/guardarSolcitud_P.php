@@ -13,7 +13,7 @@ if (isset($_REQUEST['cita']) && isset($_REQUEST['dia']) && isset($_REQUEST['hora
     $row = mysqli_fetch_row($result);
     if ($row == null) {
         //Insertar Datos en BD
-        $sql = "INSERT INTO solicitudes (Cedula,Cita, Dia, Hora, Observacion, Estado) VALUES ('$cedula','$cita', '$dia', '$hora', '$observe','aprovado')";
+        $sql = "INSERT INTO solicitudes (Cedula,Cita, Dia, Hora, Observacion, Estado) VALUES ('$cedula','$cita', '$dia', '$hora', '$observe','aprobado')";
         if (mysqli_query($conn, $sql)) {
             header('Location: ../../Pages/web/usuario/bienvenida.php?msg=Se ha registrado exitosamente su cita');
         }
