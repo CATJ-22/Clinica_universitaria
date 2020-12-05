@@ -27,17 +27,13 @@ CREATE TABLE IF NOT EXISTS `solicitudes` (
   `Estado` varchar(100) NOT NULL,
   `Created_at` timestamp NULL DEFAULT current_timestamp(),
   `Updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `FK_solicitudes_usuarios` (`Cedula`),
+  CONSTRAINT `FK_solicitudes_usuarios` FOREIGN KEY (`Cedula`) REFERENCES `usuarios` (`Cedula`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla clinica.solicitudes: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla clinica.solicitudes: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `solicitudes` DISABLE KEYS */;
-INSERT IGNORE INTO `solicitudes` (`id`, `Cedula`, `Cita`, `Dia`, `Hora`, `Observacion`, `Estado`, `Created_at`, `Updated_at`) VALUES
-	(2, '8-294-369', 'Consulta General', '2020-11-29', '13:00:00', 'me siento mareado', 'aprovado', '2020-11-23 00:14:33', '2020-11-28 02:44:31'),
-	(3, '8-294-369', 'Consulta General', '2020-11-29', '13:00:00', 'me siento mareado', 'ausente', '2020-11-23 00:14:33', '2020-11-28 01:59:15'),
-	(4, '8-294-369', 'Consulta General', '2020-11-29', '13:00:00', 'me siento mareado', 'atendido', '2020-11-23 00:14:33', '2020-11-28 01:59:22'),
-	(5, '8-294-369', 'Consulta General', '2020-11-29', '13:00:00', 'me siento mareado', 'revision', '2020-11-23 00:14:33', '2020-11-28 01:57:04'),
-	(6, '8-294-369', 'Consulta General', '2020-11-29', '13:00:00', 'me siento mareado', 'revision', '2020-11-23 00:14:33', '2020-11-28 01:57:04');
 /*!40000 ALTER TABLE `solicitudes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla clinica.usuarios
@@ -59,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT IGNORE INTO `usuarios` (`Id`, `Nombre`, `Apellido`, `Cedula`, `Edad`, `Correo`, `Pass`, `Rol`) VALUES
 	(1, 'Christian', 'Terrones', '8-941-804', 20, 'christian.terrones@utp.ac.pa', 'e10adc3949ba59abbe56e057f20f883e', 'administrativo'),
-	(2, 'Danilo', 'Torres', '8-294-369', 21, 'danilo.torres@utp.ac.pa', 'e10adc3949ba59abbe56e057f20f883e', 'usuario');
+	(2, 'Danilo', 'Torres', '8-294-363', 21, 'danilo.torres@utp.ac.pa', 'e10adc3949ba59abbe56e057f20f883e', 'usuario');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

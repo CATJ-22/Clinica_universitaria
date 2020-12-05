@@ -98,6 +98,7 @@ if ($_SESSION['rol'] == "usuario") {
     ?>
     <script>
         $(document).ready(function() {
+            console.log(<?php echo json_encode($info); ?>);
             verInfoCliente(<?php echo json_encode($info); ?>);
             $('.toast').toast('show')
         });
