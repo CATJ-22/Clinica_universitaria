@@ -137,7 +137,7 @@ if ($_SESSION['rol'] == "administrativo") {
             plugins: [ChartDataLabels],
             type: 'pie',
             data: {
-                labels: ["Atendido", "Ausentado", "Por Revisar"],
+                labels: ["Atendido", "Ausentado", "Por Atender"],
                 datasets: [{
                     data: [<?php echo $data; ?>],
                     backgroundColor: ["#46BFBD", "#FDB45C", "#616774"],

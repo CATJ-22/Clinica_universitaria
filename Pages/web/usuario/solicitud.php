@@ -85,7 +85,7 @@ if ($_SESSION['rol'] == "usuario") {
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="hora">Hora de Cita:</label>
-                            <input id="hora" type="time" class="form-control" name="hora"  min="08:30" max="15:30" required>
+                            <input id="hora" type="time" class="form-control" name="hora"  min="08:30" max="15:30" step="1800" required>
                             
                         </div>
                     </div>

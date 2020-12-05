@@ -1,6 +1,6 @@
 <?php
 include('../../../Procesos/database/conexion_DB.php');
-
+//se obtienen datos para cargar la grafica de bienvenida
 $sql = "SELECT * from solicitudes WHERE Estado='atendido'";
 $result = mysqli_query($conn, $sql);
 $atendido = mysqli_num_rows($result);
