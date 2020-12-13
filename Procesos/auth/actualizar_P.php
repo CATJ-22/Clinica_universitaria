@@ -18,6 +18,7 @@ if (isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUES
         $sql = "UPDATE usuarios SET Nombre='$nombre', Apellido='$apellido', Cedula='$cedula', Edad='$edad', Correo='$correo', Pass='$Pass' where Id='$id'";
         if (mysqli_query($conn, $sql)) {
             if ($_SESSION['rol'] == "usuario") {
+                $_SESSION['cedula']=$cedula;
                 header('Location: ../../Pages/web/usuario/bienvenida.php?msg=Se actualizaron correctamente sus datos');
             }else{
                 header('Location: ../../Pages/web/administrativo/bienvenida.php?msg=Se actualizaron correctamente sus datos');
@@ -27,6 +28,7 @@ if (isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUES
         $sql = "UPDATE usuarios SET Nombre='$nombre', Apellido='$apellido', Cedula='$cedula', Edad='$edad', Correo='$correo' where Id='$id'";
         if (mysqli_query($conn, $sql)) {
             if ($_SESSION['rol'] == "usuario") {
+                $_SESSION['cedula']=$cedula;
                 header('Location: ../../Pages/web/usuario/bienvenida.php?msg=Se actualizaron correctamente sus datos');
             }else{
                 header('Location: ../../Pages/web/administrativo/bienvenida.php?msg=Se actualizaron correctamente sus datos');

@@ -65,7 +65,7 @@ if ($_SESSION['rol'] == "administrativo") {
                 <div class="card" style="width: 30rem;">
                     <div class="card-header">
                         <!--Title-->
-                        <h2 class="card-title title text-center"><b>Total de Pacientes Atendidos o Ausentados y Citas Por Revisar</b></h2>
+                        <h2 class="card-title title text-center"><b>Total de Pacientes Atendidos o Ausentados y Citas Por Atender</b></h2>
                     </div>
                     <!--Card content-->
                     <div class="card-body ">
@@ -130,28 +130,14 @@ if ($_SESSION['rol'] == "administrativo") {
 
     </html>
     <?php include('../../../Procesos/administrativo/widgetBienvenida_P.php'); ?>
+    <script src="js/bienvenida.js"></script>
     <script>
-        $(document).ready(function() {
-            $('.toast').toast('show')
-            if (screen.width < 768){
-                $("#div-content").removeClass("row-cols-2").addClass("row-cols-1");
-            }
-        });
-
-        $(window).resize(function() {
-            if (screen.width < 768){
-                $("#div-content").removeClass("row-cols-2").addClass("row-cols-1");
-            }else{
-                $("#div-content").removeClass("row-cols-1").addClass("row-cols-2");
-            }
-        });
-
         var ctxP = document.getElementById("labelChart1").getContext('2d');
         var myPieChart = new Chart(ctxP, {
             plugins: [ChartDataLabels],
             type: 'pie',
             data: {
-                labels: ["Atendido", "Ausentado", "Por Revisar"],
+                labels: ["Atendido", "Ausentado", "Por Atender"],
                 datasets: [{
                     data: [<?php echo $data; ?>],
                     backgroundColor: ["#46BFBD", "#FDB45C", "#616774"],
